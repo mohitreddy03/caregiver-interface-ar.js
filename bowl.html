@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR.js - Fruit Bowl Example</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.7.2/aframe/build/aframe-ar.min.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+  
+  <!-- AR.js Scene to access the webcam -->
+  <a-scene embedded arjs="sourceType: webcam;">
+    
+    <!-- Add a marker that will anchor your 3D model -->
+    <a-marker preset="hiro"> <!-- 'hiro' is a predefined AR marker -->
+      <!-- Load the 3D fruit bowl -->
+      <a-entity gltf-model="#fruitBowlModel" scale="0.5 0.5 0.5" position="0 0 0"></a-entity>
+    </a-marker>
+
+    <!-- Camera setup -->
+    <a-entity camera></a-entity>
+    
+  </a-scene>
+
+  <!-- Assets for the 3D model -->
+  <a-assets>
+    <a-asset-item id="fruitBowlModel" src="bowl.glb"></a-asset-item>
+  </a-assets>
+
+</body>
+</html>

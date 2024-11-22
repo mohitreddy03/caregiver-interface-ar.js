@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.2/aframe/build/aframe-ar.min.js"></script>
+  </head>
+  <body style="margin: 0px; overflow: hidden;">
+    <a-scene embedded arjs="sourceType: webcam;">
+      <!-- Transparent Torus with adjusted radius and thickness -->
+      <a-torus id="object" 
+               position="1 1 -5" 
+               radius="0.1" 
+               tube="0.5" 
+               material="color: blue; opacity: 0.6; transparent: true;">
+        <a-animation 
+          attribute="rotation" 
+          dur="3000" 
+          to="360 360 0" 
+          repeat="indefinite" 
+          easing="linear">
+        </a-animation>
+      </a-torus>
+
+      <a-entity camera></a-entity>
+
+      <script>
+        // Adjust the object's position to ensure it stays centered
+        function updateObjectPosition() {
+          const object = document.querySelector('#object');
+          const cameraPosition = { x: 0.9, y: 0.9, z: -5 }; // Centered and 5 units in front
+          object.setAttribute('position', `${cameraPosition.x} ${cameraPosition.y} ${cameraPosition.z}`);
+        }
+
+        // Ensure the object remains centered during window resizing
+        window.addEventListener('resize', updateObjectPosition);
+
+        // Initial call to position the object
+        updateObjectPosition();
+      </script>
+    </a-scene>
+  </body>
+</html>
